@@ -1,3 +1,4 @@
+import json
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from openai import OpenAI, OpenAIError
@@ -8,8 +9,42 @@ from stability_ai import ImageGenerator
 app = Flask(__name__)
 CORS(app)
 
+def procesar_respuesta(respuesta):
+    lineas = respuesta.strip().split('\n')
+    titulo = lineas[0]
+    ingredientes_index = next(i for i, linea in enumerate(lineas) if "Ingredientes:" in linea)
+    procedimiento_index = next(i for i, linea in enumerate(lineas) if "Procedimiento:" in linea)
+    ingredientes = ' '.join(lineas[ingredientes_index:procedimiento_index])
+    procedimiento = ' '.join(lineas[procedimiento_index:])
+    return titulo, ingredientes, procedimiento
+
+def guardar_receta_desde_respuesta(respuesta, nombre_archivo='responses.json'):
+    titulo, ingredientes, procedimiento = procesar_respuesta(respuesta)
+    recetas = cargar_recetas(nombre_archivo)
+    
+    if titulo in recetas:
+        print(f"Ya existe una receta con el título '{titulo}'. No se guardará para evitar duplicados.")
+    else:
+        recetas[titulo] = {
+            'ingredientes': ingredientes,
+            'procedimiento': procedimiento
+        }
+        
+        with open(nombre_archivo, 'w') as archivo:
+            json.dump(recetas, archivo, indent=4)
+        
+        print(f"La receta '{titulo}' se ha guardado correctamente.")
+
+def cargar_recetas(nombre_archivo='responses.json'):
+    try:
+        with open(nombre_archivo, 'r') as archivo:
+            recetas = json.load(archivo)
+    except FileNotFoundError:
+        recetas = {}
+    return recetas
 
 @app.route("/api/openai", methods=["GET", "POST"])
+
 def ObtenerIngredientes():
     datos = request.json
     ingredientes_seleccionados = datos.get("ingredientesSeleccionados")
@@ -39,30 +74,29 @@ def ObtenerIngredientes():
                     }
                 ],
             )
+            
             response = completion.choices[0].message.content
-            print(response)
 
-            # Separar la respuesta en título, ingredientes y procedimiento
             titulo, contenido = response.split("Ingredientes:")
             ingredientes, procedimiento = contenido.split("Instrucciones:")
-            # Eliminar espacios en blanco al principio y al final de las cadenas
             titulo = titulo.strip()
             ingredientes = ingredientes.strip()
             procedimiento = procedimiento.strip()
-
-            # Imprimir los resultados
-            print("Título:", titulo)
-            print("Ingredientes:", ingredientes)
-            print("Procedimiento:", procedimiento)
+            
+            respuesta_del_prompt = f"{titulo}\nIngredientes: {ingredientes}\nProcedimiento: {procedimiento}"
+            print(respuesta_del_prompt)
 
             imageGenerator = ImageGenerator()
-            imageGenerator.generate_image(prompt=procedimiento)
+            imageGenerator.generate_image(prompt=procedimiento, ing=ingredientes)
 
             receta_dict = {
                 "titulo": titulo,
                 "ingredientes": ingredientes,
                 "procedimiento": procedimiento,
             }
+
+            guardar_receta_desde_respuesta(respuesta_del_prompt)
+
 
             return jsonify(receta_dict)
         except OpenAIError as e:

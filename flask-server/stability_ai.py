@@ -9,12 +9,12 @@ class ImageGenerator:
     def __init__(self):
         pass
 
-    def generate_image(self, prompt):
+    def generate_image(self, prompt, ing):
         # Our Host URL should not be prepended with "https" nor should it have a trailing slash.
         os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
 
         # Paste your API Key below.
-        os.environ['STABILITY_KEY'] = 'sk-dQozY5O68lathn3lnhHmR4luxR6uMqiDS23VCqG4U1ha0OZY'
+        os.environ['STABILITY_KEY'] = 'sk-4N4Sp4UU3RhFsEHOlPz4R1rORMO385qSvWbvFfzYomgkDvpQ'
 
         # Set up our connection to the API.
         stability_api = client.StabilityInference(
@@ -26,10 +26,10 @@ class ImageGenerator:
         print(prompt)
         
         answers = stability_api.generate(
-            prompt=f"Imagina que eres un chef pastelero de renombre, creando un postre excepcional generando una sola imagen. Describe con precisión todos los elementos, desde ingredientes hasta la presentación final, enfocándote en una sola versión exquisita y detallada del postre. Esta representación deberá capturar la esencia completa del postre, su textura, sabor y aroma a partir de su descripción, logrando que quien la vea pueda casi percibir su sabor. El proceso de creación detallado es el siguiente: {prompt}",
+            prompt=f"Imagine that you are a renowned pastry chef, creating an exceptional dessert by generating a single image. Accurately describe all elements, from ingredients ({ing}) to the final presentation, focusing on a single exquisite and detailed image of the dessert. This representation must capture the complete essence of the dessert, its texture, flavor and aroma from its description, ensuring that whoever sees it can almost perceive its flavor. The detailed creation process is as follows: {prompt}",
             seed=1229080980,
-            steps=70,
-            cfg_scale=8.0,
+            steps=40,
+            cfg_scale=5,
             width=1024,
             height=1024,
             samples=1,

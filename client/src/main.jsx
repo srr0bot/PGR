@@ -10,6 +10,8 @@ import "@fontsource/roboto/700.css";
 import "./index.css";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material";
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 const theme = createTheme({
   palette: {
@@ -27,7 +29,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App />
+      <Router>
+        <App />
+      </Router>
     </ThemeProvider>
   </React.StrictMode>
 );

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import imagenReceta from "../src/images/1229080980.png";
-import imagenSecreta from '../src/images/poio.png'
+import { useNavigate } from 'react-router-dom';
+import Result from "./result"
 
 function App() {
   const [seleccion, setSeleccion] = useState({});
@@ -8,6 +9,7 @@ function App() {
   const [respuesta, setRespuesta] = useState([]);
   const [mostrarImagen, setMostrarImagen] = useState(false);
   const [mostrarTexto, setMostrarTexto] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchIngredientes() {
@@ -46,6 +48,7 @@ function App() {
       setMostrarTexto(true);
       if (response.ok) {
         console.log("Datos enviados correctamente");
+        navigate('/result', { state: { respuesta: data, mostrarImagen: true, mostrarTexto: true } });
       } else {
         console.error("Error al enviar datos al servidor");
       }
@@ -86,9 +89,6 @@ function App() {
           {mostrarImagen && (
             <img src={imagenReceta} className="size-96" alt="Receta" />
           )}
-        </div>
-        <div className="flex justify-end m-10 p-2">
-          <img src={imagenSecreta} alt="imagenSecreta" className="size-10 opacity-50" />
         </div>
       </div>
     </div>
