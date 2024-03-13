@@ -1,82 +1,152 @@
 [
-    {
-      "id": 1,
-      "nombre": "Chocolate",
-      "categoria": "Dulce"
-    },
-    {
-      "id": 2,
-      "nombre": "Fresas",
-      "categoria": "Fruta"
-    },
-    {
-      "id": 3,
-      "nombre": "Nata",
-      "categoria": "Lácteo"
-    },
-    {
-      "id": 4,
-      "nombre": "Vainilla",
-      "categoria": "Esencia"
-    },
-    {
-      "id": 5,
-      "nombre": "Azúcar",
-      "categoria": "Endulzante"
-    },
-    {
-      "id": 6,
-      "nombre": "Harina",
-      "categoria": "Base"
-    },
-    {
-      "id": 7,
-      "nombre": "Levadura",
-      "categoria": "Agente leudante"
-    },
-    {
-      "id": 8,
-      "nombre": "Mantequilla",
-      "categoria": "Grasa"
-    },
-    {
-      "id": 9,
-      "nombre": "Moras",
-      "categoria": "Huevo"
-    },
-    {
-      "id": 10,
-      "nombre": "Leche condensada",
-      "categoria": "Lácteo"
-    },
-    {
-      "id": 11,
-      "nombre": "Canela",
-      "categoria": "Condimento"
-    },
-    {
-      "id": 12,
-      "nombre": "Nueces",
-      "categoria": "Frutos secos"
-    },
-    {
-      "id": 13,
-      "nombre": "Miel",
-      "categoria": "Endulzante"
-    },
-    {
-      "id": 14,
-      "nombre": "Coco rallado",
-      "categoria": "Fruto seco"
-    },
-    {
-      "id": 15,
-      "nombre": "Yogur",
-      "categoria": "Lácteo"
-    },
-    {
-      "id": 16,
-      "nombre": "Limón",
-      "categoria": "Fruta"
-    }
-  ]
+  {
+    "id": 1,
+    "nombre": "Chocolate",
+    "categoria": "Dulce"
+  },
+  {
+    "id": 2,
+    "nombre": "Fresas",
+    "categoria": "Fruta"
+  },
+  {
+    "id": 3,
+    "nombre": "Nata",
+    "categoria": "Lácteo"
+  },
+  {
+    "id": 4,
+    "nombre": "Vainilla",
+    "categoria": "Esencia"
+  },
+  {
+    "id": 5,
+    "nombre": "Azúcar",
+    "categoria": "Endulzante"
+  },
+  {
+    "id": 6,
+    "nombre": "Harina",
+    "categoria": "Base"
+  },
+  {
+    "id": 7,
+    "nombre": "Levadura",
+    "categoria": "Agente leudante"
+  },
+  {
+    "id": 8,
+    "nombre": "Mantequilla",
+    "categoria": "Grasa"
+  },
+  {
+    "id": 9,
+    "nombre": "Moras",
+    "categoria": "Fruta"
+  },
+  {
+    "id": 10,
+    "nombre": "Leche condensada",
+    "categoria": "Lácteo"
+  },
+  {
+    "id": 11,
+    "nombre": "Canela",
+    "categoria": "Condimento"
+  },
+  {
+    "id": 12,
+    "nombre": "Nueces",
+    "categoria": "Frutos secos"
+  },
+  {
+    "id": 13,
+    "nombre": "Miel",
+    "categoria": "Endulzante"
+  },
+  {
+    "id": 14,
+    "nombre": "Coco rallado",
+    "categoria": "Fruto seco"
+  },
+  {
+    "id": 15,
+    "nombre": "Yogur",
+    "categoria": "Lácteo"
+  },
+  {
+    "id": 16,
+    "nombre": "Limón",
+    "categoria": "Fruta"
+  },
+  {
+    "id": 17,
+    "nombre": "Almendras",
+    "categoria": "Frutos secos"
+  },
+  {
+    "id": 18,
+    "nombre": "Huevos",
+    "categoria": "Base"
+  },
+  {
+    "id": 19,
+    "nombre": "Masa filo",
+    "categoria": "Base"
+  },
+  {
+    "id": 20,
+    "nombre": "Crema de cacahuate",
+    "categoria": "Grasa"
+  },
+  {
+    "id": 21,
+    "nombre": "Queso crema",
+    "categoria": "Lácteo"
+  },
+  {
+    "id": 22,
+    "nombre": "Extracto de almendra",
+    "categoria": "Esencia"
+  },
+  {
+    "id": 23,
+    "nombre": "Mango",
+    "categoria": "Fruta"
+  },
+  {
+    "id": 24,
+    "nombre": "Polvo para hornear",
+    "categoria": "Agente leudante"
+  },
+  {
+    "id": 25,
+    "nombre": "Gelatina sin sabor",
+    "categoria": "Agente gelificante"
+  },
+  {
+    "id": 26,
+    "nombre": "Chocolate blanco",
+    "categoria": "Dulce"
+  },
+  {
+    "id": 27,
+    "nombre": "Azúcar moreno",
+    "categoria": "Endulzante"
+  },
+  {
+    "id": 28,
+    "nombre": "Avellanas",
+    "categoria": "Frutos secos"
+  },
+  {
+    "id": 29,
+    "nombre": "Pistachos",
+    "categoria": "Frutos secos"
+  },
+  {
+    "id": 30,
+    "nombre": "Arándanos",
+    "categoria": "Fruta"
+  }
+]

@@ -56,7 +56,7 @@ def ObtenerIngredientes():
             print("Procedimiento:", procedimiento)
 
             imageGenerator = ImageGenerator()
-            imageGenerator.generate_image(prompt=ingredientes)
+            imageGenerator.generate_image(prompt=procedimiento)
 
             receta_dict = {
                 "titulo": titulo,

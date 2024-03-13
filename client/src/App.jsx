@@ -8,7 +8,7 @@ function App() {
   const [ingrediente, setingrediente] = useState([])
   const [respuesta, setRespuesta] = useState([]);
   const [mostrarImagen, setMostrarImagen] = useState(false);
-  const [mostrarTexto, setMostrarTexto] = useState(false);
+  const [mostrarTexto, setMostrarTexto] = useState(false); 
 
   useEffect(() => {
     async function fetchingrediente() {
