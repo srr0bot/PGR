@@ -1,27 +1,26 @@
-import { Box, Button, Checkbox, Container, Divider, FormControlLabel, FormGroup, Grid, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import imagenReceta from "../src/images/1229080980.png"
+import { useState, useEffect } from "react";
+import imagenReceta from "../src/images/1229080980.png";
+import imagenSecreta from '../src/images/poio.png'
 
 function App() {
-  const [seleccion, setSeleccion] = useState({})
-  const [ingrediente, setingrediente] = useState([])
+  const [seleccion, setSeleccion] = useState({});
+  const [ingrediente, setIngrediente] = useState([]);
   const [respuesta, setRespuesta] = useState([]);
   const [mostrarImagen, setMostrarImagen] = useState(false);
-  const [mostrarTexto, setMostrarTexto] = useState(false); 
+  const [mostrarTexto, setMostrarTexto] = useState(false);
 
   useEffect(() => {
-    async function fetchingrediente() {
+    async function fetchIngredientes() {
       try {
-        const response = await fetch('/ingredients.json')
-        const data = await response.json()
-        setingrediente(data)
+        const response = await fetch("/ingredients.json");
+        const data = await response.json();
+        setIngrediente(data);
       } catch (error) {
-        console.error('Error', error)
+        console.error("Error", error);
       }
     }
-    fetchingrediente()
-  }, [])
+    fetchIngredientes();
+  }, []);
 
   const manejarSeleccion = (nombre) => {
     setSeleccion((prevSeleccion) => ({
@@ -45,7 +44,7 @@ function App() {
       setRespuesta(data);
       setMostrarImagen(true);
       setMostrarTexto(true);
-      if (respuesta.ok) {
+      if (response.ok) {
         console.log("Datos enviados correctamente");
       } else {
         console.error("Error al enviar datos al servidor");
@@ -55,26 +54,45 @@ function App() {
     }
   };
 
-  return(
-    <Container sx={{pt: 5}}>
-        {ingrediente.map((ingrediente)=>(
-            <div key={ingrediente.id}>
-                <FormGroup>
-                  <FormControlLabel control={<Checkbox/>} onChange={() => manejarSeleccion(ingrediente.nombre)} label={ingrediente.nombre}></FormControlLabel>
-                </FormGroup>
-            </div>
+  return (
+    <div className="flex flex-col m-10">
+      <div className="grid grid-cols-3 gap-4 p-10">
+        {ingrediente.map((ingrediente) => (
+          <div key={ingrediente.id}>
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                onChange={() => manejarSeleccion(ingrediente.nombre)}
+                className="mr-2"
+              />
+              {ingrediente.nombre}
+            </label>
+          </div>
         ))}
-      <Button variant="contained" onClick={enviarSeleccion}>Aceptar ingredientes</Button>
-      <Typography variant="h1">{respuesta.titulo}</Typography>
-      {mostrarTexto && <Typography variant="h3">Ingredientes:</Typography>}
-      <Typography variant="body1">{respuesta.ingredientes}</Typography>
-      {mostrarTexto && <Typography variant="h3">Procedimiento:</Typography>}
-      <Typography variant="body1">{respuesta.procedimiento}</Typography>
-      <Box component="section" sx={{ p: 2, border: '3', width: '500px', height: 'auto'}}>
-      {mostrarImagen && (<img src={imagenReceta} style={{ width: "100%", height: "auto" }}/>)} 
-      </Box>
-    </Container>
-  )
+      </div>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+        onClick={enviarSeleccion}
+      >
+        Aceptar ingredientes
+      </button>
+      <div className="px-10 py-2">
+        <h1 className="text-3xl font-bold mt-4">{respuesta.titulo}</h1>
+        {mostrarTexto && <h3 className="text-2xl mt-4">Ingredientes:</h3>}
+        <p className="p-5">{respuesta.ingredientes}</p>
+        {mostrarTexto && <h3 className="text-2xl mt-">Procedimiento:</h3>}
+        <p className="p-5 text-pretty">{respuesta.procedimiento}</p>
+        <div className="flex p-10 justify-center align-middle">
+          {mostrarImagen && (
+            <img src={imagenReceta} className="size-96" alt="Receta" />
+          )}
+        </div>
+        <div className="flex justify-end m-10 p-2">
+          <img src={imagenSecreta} alt="imagenSecreta" className="size-10 opacity-50" />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;

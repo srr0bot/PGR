@@ -26,7 +26,7 @@ class ImageGenerator:
         print(prompt)
         
         answers = stability_api.generate(
-            prompt=f"Imagina que eres un chef pastelero de renombre, creando un postre excepcional. Describe con precisión todos los elementos, desde ingredientes hasta la presentación final, enfocándote en una sola versión exquisita y detallada del postre. Esta representación deberá capturar la esencia completa del postre, su textura, sabor y aroma a partir de su descripción, logrando que quien la vea pueda casi percibir su sabor. El proceso de creación detallado es el siguiente: {prompt}",
+            prompt=f"Imagina que eres un chef pastelero de renombre, creando un postre excepcional generando una sola imagen. Describe con precisión todos los elementos, desde ingredientes hasta la presentación final, enfocándote en una sola versión exquisita y detallada del postre. Esta representación deberá capturar la esencia completa del postre, su textura, sabor y aroma a partir de su descripción, logrando que quien la vea pueda casi percibir su sabor. El proceso de creación detallado es el siguiente: {prompt}",
             seed=1229080980,
             steps=70,
             cfg_scale=8.0,
